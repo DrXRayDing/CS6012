@@ -8,7 +8,7 @@ According to my experiment, the timer updated roughly 23,881,881 times in a seco
 From the data, the smallest difference is 41 nanoseconds. This suggests that the timer is capable of advancing in increments of at least 41 nanoseconds. However, this does not directly tell us how long it takes to compute System.nanoTime() itself, as the recorded time includes both the execution time of System.nanoTime() and any other code running in the loop between checks.
 
 4.Estimate the precision of your answer above (+/- how many nanoseconds?)
-the precision of the timing measurement can be estimated to be ±0.082 nanoseconds.
+the precision of the timing measurement can be estimated to be ±1 nanoseconds.
 
 5.How long does it take to compute the square root of the numbers 1 through 10?
 The operation takes 61.2 ± 7.36 nanoseconds based on my data.
