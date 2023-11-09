@@ -2,8 +2,8 @@ package assignment02;
 import java.lang.reflect.GenericArrayType;
 import java.util.GregorianCalendar;
 
-public class LibraryBook extends Book{
-    private String holder;
+public class LibraryBook<Type> extends Book{
+    private Type holder; // Use the generic Type instead of String
     private GregorianCalendar dueDate;
     public LibraryBook(long isbn, String author, String title) {
         super(isbn, author, title); //super must be the first line in the constructor
@@ -11,7 +11,7 @@ public class LibraryBook extends Book{
         this.dueDate = null; // initialize dueDate
     }
 
-    public String getHolder(){return this.holder;}
+    public Type getHolder(){return this.holder;}
 
     public GregorianCalendar getDueDate(){return this.dueDate;}
 
@@ -20,7 +20,7 @@ public class LibraryBook extends Book{
         this.dueDate = null;
     }
 
-    public void checkOut(String holder, GregorianCalendar dueDate){
+    public void checkOut(Type holder, GregorianCalendar dueDate){
         this.holder = holder;
         this.dueDate = dueDate;
     }
