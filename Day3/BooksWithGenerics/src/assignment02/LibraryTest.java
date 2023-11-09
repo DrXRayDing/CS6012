@@ -123,4 +123,57 @@ class LibraryTest {
 
     }
 
+    @Test
+    public void getInventoryListTest(){
+        // test a library that uses phone numbers (PhoneNumber) to id patrons
+        var lib = new Library<String>();
+        lib.add(9780374292799L, "Thomas L. Friedman", "The World is Flat");
+        lib.add(9780330351690L, "Jon Krakauer", "Into the Wild");
+        lib.add(9780446580342L, "David Baldacci", "Simple Genius");
+
+        var inventory = lib.getInventoryList();
+
+        assertEquals(9780330351690L, inventory.get(0).getIsbn());
+        assertEquals(9780374292799L, inventory.get(1).getIsbn());
+        assertEquals(9780446580342L, inventory.get(2).getIsbn());
+
+    }
+
+    @Test
+    public void getOrderedByAuthorTest(){
+        // test a library that uses phone numbers (PhoneNumber) to id patrons
+        var lib = new Library<String>();
+        lib.add(9780374292799L, "Thomas L. Friedman", "The World is Flat");
+        lib.add(9780330351690L, "Jon Krakauer", "Into the Wild");
+        lib.add(9780446580342L, "David Baldacci", "Simple Genius");
+
+        var inventory = lib.getOrderedByAuthor();
+
+        assertEquals("David Baldacci", inventory.get(0).getAuthor());
+        assertEquals("Jon Krakauer", inventory.get(1).getAuthor());
+        assertEquals("Thomas L. Friedman", inventory.get(2).getAuthor());
+
+    }
+
+    @Test
+    public void getOverdueListTest(){
+        // test a library that uses phone numbers (PhoneNumber) to id patrons
+        var lib = new Library<String>();
+
+
+
+        LibraryBook<String> book1 = new LibraryBook<>(9780374292799L, "Thomas L. Friedman", "The World is Flat");
+        book1.checkOut("Ray Ding", new GregorianCalendar(2023, 11,12)); // Not overdue
+        LibraryBook<String> book2 = new LibraryBook<>(9780330351690L, "Jon Krakauer", "Into the Wild");
+        book2.checkOut("Ray Ding", new GregorianCalendar(2023,9,9)); // Overdue
+
+        lib.addAll(new ArrayList<LibraryBook<String>>() {{add(book1); add(book2);}});
+
+        //set the overdue date as 2023-11-11
+        ArrayList<LibraryBook<String>> overdue = lib.getOverdueList(11, 11,2023);
+
+        assertEquals(1, overdue.size());
+        assertEquals(9780330351690L, overdue.get(0).getIsbn());
+
+    }
 }

@@ -123,7 +123,7 @@ public class Library<Type> {
   public ArrayList<LibraryBook<Type>> lookup(Type holder) {
     ArrayList<LibraryBook<Type>> booksCheckedOut = new ArrayList<>();
     for (LibraryBook<Type> book: library){
-      if(book.getHolder() != null && book.getHolder().equals(holder)){
+      if(book.getHolder() != null && book.getHolder().equals(holder)){//null with equal will throw exception
         booksCheckedOut.add(book);
       }
     }
@@ -153,16 +153,11 @@ public class Library<Type> {
    */
   public boolean checkout(long isbn, Type holder, int month, int day, int year) {
     for (LibraryBook<Type> book: library){
-      if(book.getIsbn() == isbn){
-        if(book.getHolder() != null){ //If the book with the specified ISBN is already checked out, returns false.
-          return false;
-        }
-        else {
-          book.checkOut(holder, new GregorianCalendar(year, month, day));//Sets the holder and due date of the library book with the specified ISBN.
-          return true;
+      if(book.getIsbn() == isbn && book.getHolder() == null){ //If the book with the specified ISBN is already checked out, returns false.
+        book.checkOut(holder, new GregorianCalendar(year, month, day));
+        return true;
         }
       }
-    }
     return false;//If no book with the specified ISBN is in the library, returns false.
   }
 
@@ -180,14 +175,9 @@ public class Library<Type> {
    */
   public boolean checkin(long isbn) {
     for (LibraryBook<Type> book: library){
-      if(book.getIsbn() == isbn){
-        if(book.getHolder() == null){ //If the book with the specified ISBN is already checked in, returns false.
-          return false;
-        }
-        else {
-          book.checkIn();//Unsets the holder and due date of the library book.
-          return true;
-        }
+      if(book.getIsbn() == isbn && book.getHolder() != null){ //If the book with the specified ISBN is already checked in, returns false.
+        book.checkIn();
+        return true;
       }
     }
     return false;//If no book with the specified ISBN is in the library, returns false.
@@ -322,10 +312,10 @@ public class Library<Type> {
       GregorianCalendar lhsDueDate = lhs.getDueDate();
       GregorianCalendar rhsDueDate = rhs.getDueDate();
       if (lhsDueDate == null) {
-        return (rhsDueDate == null) ? 0 : 1;
+        return (rhsDueDate == null) ? 0 : 1; //equal if both are null, "greater" if rhs has a real due date
       }
       if (rhsDueDate == null) {
-        return -1;
+        return -1; //real due date is less than a null due date
       }
       return lhsDueDate.compareTo(rhsDueDate);
     }

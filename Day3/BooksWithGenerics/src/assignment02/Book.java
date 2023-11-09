@@ -57,10 +57,10 @@ public class Book {
 //    if(other == null || this.getClass() != other.getClass()) { //check other is not null and is of the same class as this
 //      return false;
 //    }
-    if (!(other instanceof Book)) {
+    if (!(other instanceof Book book)) {
       return false;
     }
-    Book book = (Book) other; // cast other to Book and then compare
+    // cast other to Book and then compare
     return this.isbn == book.isbn && this.author.equals(book.author) && this.title.equals(book.title);
   }
 
