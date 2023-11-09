@@ -50,11 +50,14 @@ public class Book {
    * @return true if "other" is a Book and is equal to "this", false otherwise
    */
   public boolean equals(Object other) {
-    // FILL IN -- do not return false unless appropriate
-    if (this == other) { //check if other is a reference to the same object
-      return true;
-    }
-    if(other == null || this.getClass() != other.getClass()) { //check other is not null and is of the same class as this
+
+//    if (this == other) { //check if other is a reference to the same object
+//      return true;
+//    }
+//    if(other == null || this.getClass() != other.getClass()) { //check other is not null and is of the same class as this
+//      return false;
+//    }
+    if (!(other instanceof Book)) {
       return false;
     }
     Book book = (Book) other; // cast other to Book and then compare

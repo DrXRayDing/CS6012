@@ -41,7 +41,7 @@ class LibraryTest {
         assertTrue(res);
         var booksCheckedOut = lib.lookup("Jane Doe");
         assertEquals(booksCheckedOut.size(), 1);
-        assertEquals(booksCheckedOut.get(0),new LibraryBook<String>(9780330351690L, "Jon Krakauer", "Into the Wild"));
+        assertEquals(booksCheckedOut.get(0),new Book(9780330351690L, "Jon Krakauer", "Into the Wild"));
         assertEquals(booksCheckedOut.get(0).getHolder(), "Jane Doe");
         assertEquals(booksCheckedOut.get(0).getDueDate(),new GregorianCalendar(2008, 1, 1));
         res = lib.checkin(9780330351690L);
@@ -61,7 +61,7 @@ class LibraryTest {
         assertTrue(res);
         var booksCheckedOut = lib.lookup("Ray Ding");
         assertEquals(booksCheckedOut.size(), 1);
-        assertEquals(booksCheckedOut.get(0),new LibraryBook<String>(9781843190028L, "Moyra Caldecott", "Crystal Legends"));
+        assertEquals(booksCheckedOut.get(0),new Book(9781843190028L, "Moyra Caldecott", "Crystal Legends"));
         assertEquals(booksCheckedOut.get(0).getHolder(), "Ray Ding");
         assertEquals(booksCheckedOut.get(0).getDueDate(),new GregorianCalendar(2023, 11, 9));
         res = lib.checkin(9781843190028L);
@@ -85,8 +85,8 @@ class LibraryTest {
 
         var booksCheckedOut1 = lib.lookup(patron1);
         assertEquals(booksCheckedOut1.size(), 2);
-        assertTrue(booksCheckedOut1.contains(new LibraryBook<Type>(9780330351690L, "Jon Krakauer", "Into the Wild")));
-        assertTrue(booksCheckedOut1.contains(new LibraryBook<Type>(9780374292799L, "Thomas L. Friedman", "The World is Flat")));
+        assertTrue(booksCheckedOut1.contains(new Book(9780330351690L, "Jon Krakauer", "Into the Wild")));
+        assertTrue(booksCheckedOut1.contains(new Book(9780374292799L, "Thomas L. Friedman", "The World is Flat")));
         assertEquals(booksCheckedOut1.get(0).getHolder(), patron1);
         assertEquals(booksCheckedOut1.get(0).getDueDate(), new GregorianCalendar(2008, 1, 1));
         assertEquals(booksCheckedOut1.get(1).getHolder(),patron1);
@@ -112,8 +112,8 @@ class LibraryTest {
         ArrayList<LibraryBook<PhoneNumber>> booksCheckedOut2 = lib.lookup(patron2);
 
         assertEquals(booksCheckedOut2.size(), 2);
-        assertTrue(booksCheckedOut2.contains(new LibraryBook<Type>(9780330351690L, "Jon Krakauer", "Into the Wild")));
-        assertTrue(booksCheckedOut2.contains(new LibraryBook<Type>(9780374292799L, "Thomas L. Friedman", "The World is Flat")));
+        assertTrue(booksCheckedOut2.contains(new Book(9780330351690L, "Jon Krakauer", "Into the Wild")));
+        assertTrue(booksCheckedOut2.contains(new Book(9780374292799L, "Thomas L. Friedman", "The World is Flat")));
         assertEquals(booksCheckedOut2.get(0).getHolder(),patron2);
         assertEquals(booksCheckedOut2.get(0).getDueDate(),new GregorianCalendar(2008, 1, 1));
         assertEquals(booksCheckedOut2.get(1).getHolder(), patron2);
