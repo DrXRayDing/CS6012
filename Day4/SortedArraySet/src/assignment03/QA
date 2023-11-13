@@ -1,0 +1,26 @@
+1. If you had backed the sorted set with a Java List instead of a basic array, summarize the main points in which your implementation would have differed. Do you expect that using a Java List would have more or less efficient and why? (Consider efficiency both in running time and in program development time.)
+Implementation Differences:
+
+Dynamic Sizing: With a Java List, the sorted set would dynamically adjust its size. This means less manual resizing logic compared to using a basic array.
+API Methods: Java Lists offer a rich set of methods for insertion, deletion, and searching, which could simplify the implementation.
+Memory Management: Using a List abstracts away the lower-level memory management required with arrays.
+Efficiency Considerations:
+
+Running Time Efficiency: For certain operations like adding or removing elements, a List might be less efficient than an array, especially if a LinkedList is used. However, for ArrayList, the efficiency would be comparable.
+Program Development Time: Using a List would likely reduce development time due to easier handling of dynamic sizing and the availability of high-level methods.
+Space Efficiency: Lists generally consume more memory than arrays due to additional object overhead.
+
+2. What do you expect the Big-O behavior of BinarySearchSet's contains method to be and why?
+The contains method in a BinarySearchSet, which uses binary search, would have a time complexity of O(log n). This is because binary search divides the search space in half with each step, significantly reducing the number of elements to be checked compared to linear search.
+
+3. Plot the running time of BinarySearchSet's contains method, using the timing techniques demonstrated in previous labs. Be sure to use a decent iteration count to get a reasonable average of running times. Include your plot in your analysis document. Does the growth rate of these running times match the Big-oh behavior you predicted in question 2?
+Initialize: Create a BinarySearchSet with a varying number of elements (N).
+Measure Time: For each N, measure the time taken by the contains method to find an element (or conclude it’s not present). Repeat this multiple times for each N to get an average time.
+Plot: Plot these average times against the corresponding N values.
+The plot should ideally show a logarithmic growth in running time, aligning with the O(log n) complexity.
+
+4. Consider your add method. For an element not already contained in the set, how long does it take to locate the correct position at which to insert the element? Create a plot of running times. Pay close attention to the problem size for which you are collecting running times. Beware that if you simply add N items, the size of the sorted set is always changing. A good strategy is to fill a sorted set with N items and time how long it takes to add one additional item. To do this repeatedly (i.e., iteration count), remove the item and add it again, being careful not to include the time required to call remove() in your total. In the worst-case, how much time does it take to locate the position to add an element (give your answer using Big-oh)?
+Locating Insert Position: To find the correct position for insertion, the add method likely performs a binary search similar to the contains method. This also has a Big-O of O(log N).
+Plotting Running Times for add Method:
+For a detailed analysis, I would fill the set with N items and measure the time taken to add one additional item, ensuring the size of the set remains constant.
+Worst-Case Scenario: In the worst case, locating the position to add an element in a sorted set is O(log N) since that's the complexity of a binary search.
