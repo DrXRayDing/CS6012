@@ -1,4 +1,5 @@
 package assignment03;
+//Student Ray Ding
 
 import java.util.*;
 
@@ -201,6 +202,7 @@ public class BinarySearchSet<E> implements SortedSet<E>, Iterable<E> {
     //Inner class for the iterator
     private class BinarySearchSetIterator implements Iterator<E> {
         private int currentIndex = 0;
+        private boolean callNext = false;
         @Override
         public boolean hasNext() {
             return currentIndex < size;
@@ -209,7 +211,22 @@ public class BinarySearchSet<E> implements SortedSet<E>, Iterable<E> {
         @Override
         public E next() {
             if(!hasNext()) throw new NoSuchElementException();
+            callNext = true;
             return data[currentIndex++];
+        }
+
+        @Override
+        public void remove(){
+            if(callNext){
+                currentIndex--;
+                System.arraycopy(data, currentIndex+1, data, currentIndex, size - currentIndex - 1);
+                size--;
+                callNext = false; // Only remove once
+            }
+            else {
+                throw new IllegalStateException();
+            }
+
         }
     }
 
