@@ -15,7 +15,7 @@ The contains method in a BinarySearchSet, which uses binary search, would have a
 Initialize: Create a BinarySearchSet with a varying number of elements (N).
 Measure Time: For each N, measure the time taken by the contains method to find an element (or conclude it’s not present). Repeat this multiple times for each N to get an average time.
 Plot: Plot these average times against the corresponding N values.
-The plot should ideally show a logarithmic growth in running time, aligning with the O(log n) complexity.
+The plot does align with the O(log n) complexity.
 
 4. Consider your add method. For an element not already contained in the set, how long does it take to locate the correct position at which to insert the element? Create a plot of running times. Pay close attention to the problem size for which you are collecting running times. Beware that if you simply add N items, the size of the sorted set is always changing. A good strategy is to fill a sorted set with N items and time how long it takes to add one additional item. To do this repeatedly (i.e., iteration count), remove the item and add it again, being careful not to include the time required to call remove() in your total. In the worst-case, how much time does it take to locate the position to add an element (give your answer using Big-oh)?
 Locating Insert Position: To find the correct position for insertion, the add method likely performs a binary search similar to the contains method. This also has a Big-O of O(log N).

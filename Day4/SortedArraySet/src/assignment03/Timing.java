@@ -27,16 +27,20 @@ public class Timing {
                 for (int iter = 0; iter < ITER_COUNT; iter++) {
                     // SET UP!
                     BinarySearchSet<Integer> set = new BinarySearchSet<>();
-                    for (int i = 0; i < size; i++) {
+
+                    for (int i = 0; i < size; i++){
                         set.add(i);
                     }
+                    int min = -5;
+
                     int findElement = random.nextInt(size); // This gets me a random int between 0 and size;
+
 
                     // TIME IT!
                     long start = System.nanoTime();
-                    set.add(findElement);
+                    set.contains(findElement);
                     long stop = System.nanoTime();
-                    set.remove(findElement);
+                    //set.remove(min);
                     totalTime += stop - start;
                 }
                 double averageTime = totalTime / (double) ITER_COUNT;
