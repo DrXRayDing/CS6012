@@ -24,3 +24,4 @@
 * assertEquals(2, DiffUtil.findSmallestDiff(arr5));
 
 7. Briefly describe your unit tests for Assignment 1.
+* My unit tests check for the findSmallestDiff method with various conditions, including empty array, array with equal elements, etc. With those unit tests, I find a failure and modified the method with absolute value.
