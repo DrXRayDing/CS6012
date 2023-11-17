@@ -8,7 +8,7 @@ import java.util.Random;
 // Student: Ray Ding, Partner: Xiyao Xu
 
 public class SortUtil {
-    private static final int threshold = 50;
+    private static final int threshold = 1;
     public static <T> void mergesort(ArrayList<T> list, Comparator<? super T> comp){
         if(list == null || list.size() < 2) return;
 
@@ -82,7 +82,8 @@ public class SortUtil {
         int i = low, j = high + 1; // j is initialized to high + 1, because j is decremented before its first use in the below while loop
         Random random = new Random();
         int randomPivotIndex = low + random.nextInt(high - low + 1); // Random index for pivot
-        T pivot = list.get(randomPivotIndex); // Use the random element as pivot
+        Collections.swap(list, randomPivotIndex, low); // Swap first element with the chosen pivot element
+        T pivot = list.get(low); // Use the first (random) element as pivot
         while(true){
             while (comp.compare(list.get(++i), pivot) < 0) // Find item on left to swap, i is incremented before its first use
                 if(i == high) break;
@@ -92,7 +93,7 @@ public class SortUtil {
             Collections.swap(list, i, j); // Swap
         }
         // Swap pivot into its correct place
-        Collections.swap(list, randomPivotIndex, j);
+        Collections.swap(list, low , j);
         return j; // j is pivotIndex
 
         // Choose last element for pivot
