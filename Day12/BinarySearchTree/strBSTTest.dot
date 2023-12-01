@@ -1,0 +1,13 @@
+digraph BST {
+    node [shape=circle];
+    "xia" -> "er" [label="L"];
+    "er" -> "7" [label="L"];
+    "7" -> "Ray" [label="R"];
+    "Ray" -> "8" [label="L"];
+    "8" -> "Oh" [label="R"];
+    "Oh";
+    "Ray" -> "Raymond" [label="R"];
+    "Raymond";
+    "xia" -> "xin" [label="R"];
+    "xin";
+}
