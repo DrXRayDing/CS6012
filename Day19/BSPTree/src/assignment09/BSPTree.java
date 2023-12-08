@@ -56,15 +56,12 @@ public class BSPTree {
             } else {
                 // Handle segment splitting if necessary
                 Segment[] splitSegments = s.split(segment);
-                for (Segment splitSegment : splitSegments) {
-                    if (splitSegment != null) {
-                        if (s.whichSide(splitSegment) < 0) {
-                            leftSegments.add(splitSegment);
-                        } else {
-                            rightSegments.add(splitSegment);
-                        }
-                    }
-                }
+
+                /*  split() makes that splitSegments[0] will always be the segment on the left side
+                relative to the partitioning segment and splitSegments[1] will always be on the right side.
+                 */
+                leftSegments.add(splitSegments[0]);
+                rightSegments.add(splitSegments[1]);
             }
         }
 
@@ -82,15 +79,6 @@ public class BSPTree {
     }
 
 
-
-
-    // Constructor for creating a BSP tree with a list of segments.
-//    public BSPTree(ArrayList<Segment> segments) {
-//        for (Segment segment : segments) {
-//            insert(segment);
-//        }
-//    }
-
     // Method to insert a new segment into the BSP tree.
     public void insert(Segment segment) {
         root = insertRec(root, segment);
@@ -103,9 +91,9 @@ public class BSPTree {
         }
 
         if (segment.whichSide(node.segment) < 0) {
-            node.left = insertRec(node.left, segment);
+            node.left = insertRec(node.left, segment); // Should be left
         } else {
-            node.right = insertRec(node.right, segment);
+            node.right = insertRec(node.right, segment); // Should be right
         }
 
         return node;
